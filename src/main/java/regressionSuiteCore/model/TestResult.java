@@ -8,7 +8,8 @@ import javax.persistence.*;
  */
 
 @Entity
-@javax.persistence.Table(name = "TEST_RESULT", catalog = "TidyTester")
+@javax.persistence.Table(name = "test_result", catalog = "TidyTester", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "ID") })
 public class TestResult {
 
     private String title;
@@ -16,6 +17,18 @@ public class TestResult {
     private String message;
     private String projectId;
     private String result;
+    private String id;
+
+
+    @Id
+    @Column(name = "ID", unique = true, nullable = false)
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
 
     @Column(name = "TITLE", unique = false, nullable = false)
